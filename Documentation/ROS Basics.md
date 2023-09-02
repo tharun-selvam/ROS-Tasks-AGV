@@ -1,4 +1,4 @@
-#ROS Basics
+# ROS Basics
 
 * Typing `roscore` activates the ros master. Can only be done once simultaneously. It is done in the home directory.
 * `rqt_graph` : Shows a visual represnetation of nodes, topics and communications.
