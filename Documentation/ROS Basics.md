@@ -79,7 +79,7 @@
 	$ touch my_first_node.py
 	$ chmod +x my_first_node.py //makes the py file executable
 	```
-1. Inisde the python file
+1. Inside the python file
 	```python
 	#!/usr/bin/env/ python3 //setups the environment for python
 	import rospy
@@ -294,15 +294,40 @@ if __name__ == '__main__':
 3. `rosbag info <rosbag_filename>`
 4. `rosbag record -a -O <bagfile-name>` : Records all the topics into the bagfile name specified which has to end with `.bag` 
 
-
-
-
+## ROS Launch files
+* ROS launch files serve several key purposes:
+	- Simplify the process of starting multiple ROS nodes together.
+	- Set parameters and remap topics for nodes.
+	- Organize and manage the launch of nodes within ROS packages.
+	- Make it easier to launch complex robot systems with various configurations.
+ * Wriiten with `.launch` extension in XML(preferred) or YAML
+ * Written inside `workspace/src/package/launch` 
+ 1. Structure
+	- `<launch>`: The root element that encapsulates the entire launch file.
+	- `<node>`: This element is used to specify a ROS node to launch. You can include multiple `<node>` tags to launch multiple nodes.
+	- `<param>`: Used to set parameters for nodes.
+	- `<include>`: Allows you to include other launch files, enabling modularity and reusability.
+	- `<arg>`: Defines arguments that can be passed to the launch file or other included launch files.
+		```xml
+		<launch>
+		  <node name="my_node" pkg="my_package" type="my_node_type" output="screen">
+			<param name="param_name" value="param_value"/>
+		  </node>
+		</launch>
+		```
  
-
-
-
-
-
+2. Attributes and Elements:
+	- `name`: Specifies a unique name for the node. This is essential for distinguishing between nodes.
+	- `pkg`: The name of the ROS package containing the node's executable.
+	- `type`: The name of the node's executable within the package.
+	- `output`: Determines where the node's output is directed. Common values include "screen" (output to the console) and "log" (output to log files).
+	- `<param>`: Defines parameters for nodes, which can be read by the nodes during runtime.
+	- `<include>`: Allows you to include other launch files to compose more complex launch configurations.
+	- `<arg>`: Defines arguments that can be passed to the launch file, allowing for runtime customization.
+3. Running Launch files:
+	```
+	roslaunch my_package my_launch_file.launch
+	 ```
 
 
 
